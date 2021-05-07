@@ -4,6 +4,11 @@
             <div class="container">
                 <h3>Login</h3>
                 <hr>
+                <? if (session()->get('success')): ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= session()->get('success') ?>
+                    </div>
+                <? endif; ?>
                 <form class="" action="/login" method="POST">
                     <div class="form-group">
                         <label for="email">Email address</label>

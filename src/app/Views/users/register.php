@@ -8,14 +8,14 @@
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
-                                <label for="firstname">First Name</label>
-                                <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('firstname') ?>">
+                                <label for="first_name">First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="first_name" value="<?= set_value('first_name') ?>">
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
-                                <label for="lastname">Last Name</label>
-                                <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('lastname') ?>">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last_name" value="<?= set_value('last_name') ?>">
                             </div>
                         </div>
                         <div class="col-12">
