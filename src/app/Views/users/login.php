@@ -4,14 +4,14 @@
             <div class="container">
                 <h3>Login</h3>
                 <hr>
-                <form class="" action="/" method="POST">
+                <form class="" action="/login" method="POST">
                     <div class="form-group">
                         <label for="email">Email address</label>
                         <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email') ?>">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input type="text" class="form-control" name="password" id="password" value="">
+                        <input type="password" class="form-control" name="password" id="password" value="">
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm-4">

@@ -4,13 +4,23 @@ namespace App\Controllers;
 
 class Users extends BaseController
 {
-	public function index()
+	public function login()
 	{
 		$data = [];
 		helper(['form']);
 
 		echo view('templates/header', $data);
-		echo view('login', $data);
-		echo view('templates/footer', $data);
+		echo view('users/login');
+		echo view('templates/footer');
+	}
+
+	public function register()
+	{
+		$data = [];
+		helper(['form']);
+
+		echo view('templates/header', $data);
+		echo view('users/register');
+		echo view('templates/footer');
 	}
 }
