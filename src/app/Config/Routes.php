@@ -32,11 +32,18 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index', ['filter' => 'auth']);
-$routes->match(['GET', 'POST'], '/login', 'Users::login', ['filter' => 'noauth']);
-$routes->get('/logout', 'Users::logout');
-$routes->match(['GET', 'POST'], '/register', 'Users::register', ['filter' => 'noauth']);
-$routes->match(['GET', 'POST'], '/profile', 'Users::profile', ['filter' => 'auth']);
+
+// HomeController
+$routes->get('/home', 'Home::index', ['filter' => 'auth']);
+
+// UsersController
+$routes->match(['GET', 'POST'], '/login', 'UsersController::login', ['filter' => 'noauth']);
+$routes->get('/logout', 'UsersController::logout');
+$routes->match(['GET', 'POST'], '/register', 'UsersController::register', ['filter' => 'noauth']);
+$routes->match(['GET', 'POST'], '/profile', 'UsersController::profile', ['filter' => 'auth']);
+
+// TodosController
+$routes->get('/', 'TodosController::index', ['filter' => 'auth']);
 
 /*
  * --------------------------------------------------------------------

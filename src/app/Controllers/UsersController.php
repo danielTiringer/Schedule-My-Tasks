@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\UserModel;
+use App\Models\Users;
 
-class Users extends BaseController
+class UsersController extends BaseController
 {
 	protected $helpers = ['form'];
 
@@ -25,7 +25,7 @@ class Users extends BaseController
 			];
 
 			if ($this->validate($rules, $errors)) {
-				$model = new UserModel();
+				$model = new Users();
 
 				$user = $model->where('email', $this->request->getVar('email'))->first();
 
@@ -64,7 +64,7 @@ class Users extends BaseController
 			];
 
 			if ($this->validate($rules)) {
-				$model = new UserModel();
+				$model = new Users();
 
 				$sanitizedData = [
 					'first_name' => $this->request->getVar('first_name'),
@@ -90,7 +90,7 @@ class Users extends BaseController
 	public function profile()
 	{
 		$data = [];
-		$model = new UserModel();
+		$model = new Users();
 
 		if ($this->request->getMethod() === 'post') {
 			$rules = [

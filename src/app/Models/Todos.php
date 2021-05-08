@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Todo extends Model
+class Todos extends Model
 {
 	protected $DBGroup              = 'default';
 	protected $table                = 'todos';

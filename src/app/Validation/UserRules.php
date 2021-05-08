@@ -2,13 +2,13 @@
 
 namespace App\Validation;
 
-use App\Models\UserModel;
+use App\Models\Users;
 
 class UserRules
 {
     public function validateUser(string $str, string $fields, array $data): bool
     {
-        $model = new UserModel();
+        $model = new Users();
         $user = $model->where('email', $data['email'])->first();
 
         if (!$user) {
