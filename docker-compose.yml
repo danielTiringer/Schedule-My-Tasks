@@ -64,9 +64,6 @@ services:
     env_file:
       - .env
     environment:
-      PUID: 1000
-      PGID: 1000
-      TZ: Europe/Budapest
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}

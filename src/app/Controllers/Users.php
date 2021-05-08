@@ -6,10 +6,11 @@ use App\Models\UserModel;
 
 class Users extends BaseController
 {
+	protected $helpers = ['form'];
+
 	public function login()
 	{
 		$data = [];
-		helper(['form']);
 
 		if ($this->request->getMethod() === 'post') {
 			$rules = [
@@ -46,7 +47,6 @@ class Users extends BaseController
 	public function register()
 	{
 		$data = [];
-		helper(['form']);
 
 		if ($this->request->getMethod() === 'post') {
 			$rules = [
@@ -68,8 +68,7 @@ class Users extends BaseController
 				];
 				$model->save($sanitizedData);
 
-				$session = session();
-				$session->setFlashData('success', 'Successfully registered');
+				session()->setFlashData('success', 'Successfully registered');
 
 				return redirect()->to('/login');
 			}
@@ -79,6 +78,50 @@ class Users extends BaseController
 
 		echo view('templates/header', $data);
 		echo view('users/register');
+		echo view('templates/footer');
+	}
+
+	public function profile()
+	{
+		$data = [];
+		$model = new UserModel();
+
+		if ($this->request->getMethod() === 'post') {
+			$rules = [
+				'first_name' => 'required|min_length[3]|max_length[50]',
+				'last_name' => 'required|min_length[3]|max_length[50]',
+			];
+
+			if ($this->request->getPost('password') != '') {
+				$rules['password'] = 'required|min_length[8]|max_length[100]';
+				$rules['password_confirm'] = 'matches[password]';
+			}
+
+			if ($this->validate($rules)) {
+
+				$sanitizedData = [
+					'id' => session()->get('id'),
+					'first_name' => $this->request->getVar('first_name'),
+					'last_name' => $this->request->getVar('last_name'),
+				];
+				if ($this->request->getPost('password') != '') {
+					$sanitizedData['password'] = $this->request->getVar('password');
+				}
+
+				$model->save($sanitizedData);
+
+				session()->setFlashData('success', 'Successfully updated');
+
+				return redirect()->to('/profile');
+			}
+
+			$data['validation'] = $this->validator;
+		}
+
+		$data['user'] = $model->where('id', session()->get('id'))->first();
+
+		echo view('templates/header', $data);
+		echo view('users/profile');
 		echo view('templates/footer');
 	}
 
