@@ -4,11 +4,11 @@ namespace App\Models;
 
 use CodeIgniter\Test\CIUnitTestCase;
 
-class UserModelTest extends CIUnitTestCase
+class UsersTest extends CIUnitTestCase
 {
     public function testIfPasswordGetsHashed()
     {
-        $SUT = new UserModel();
+        $SUT = new Users();
 
         $hashPassword = $this->getPrivateMethodInvoker($SUT, 'hashPassword');
 
