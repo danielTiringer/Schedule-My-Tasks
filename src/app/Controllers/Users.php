@@ -29,7 +29,7 @@ class Users extends BaseController
 				$user = $model->where('email', $this->request->getVar('email'))->first();
 
 				if ($user) {
-					$this->setUser($user);
+					$this->setUserSession($user);
 
 					return redirect()->to('/');
 				}
@@ -82,7 +82,7 @@ class Users extends BaseController
 		echo view('templates/footer');
 	}
 
-	private function setUser(array $user)
+	private function setUserSession(array $user)
 	{
 		$data = [
 			'id' => $user['id'],

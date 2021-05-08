@@ -7,6 +7,9 @@
         <title>Schedule-My-Tasks</title>
     </head>
     <body>
+        <?php
+            $uri = service('uri');
+        ?>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="/">Schedule-My-Tasks</a>
@@ -15,14 +18,30 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/register">Register</a>
-                        </li>
-                    </ul>
+                    <? if (session()->get('isLoggedIn')): ?>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item <?= (!$uri->getSegment(1) ? 'active' : null) ?>">
+                                <a class="nav-link" href="/">Home</a>
+                            </li>
+                            <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
+                                <a class="nav-link" href="/profile">Profile</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav my-2 my-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                        </ul>
+                    <? else: ?>
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item <?= ($uri->getSegment(1) == 'login' ? 'active' : null) ?>">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item <?= ($uri->getSegment(1) == 'register' ? 'active' : null) ?>">
+                                <a class="nav-link" href="/register">Register</a>
+                            </li>
+                        </ul>
+                    <? endif; ?>
                 </div>
             </div>
         </nav>
