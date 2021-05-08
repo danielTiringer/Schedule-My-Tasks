@@ -5,7 +5,7 @@ Looking to write an application that helps keep on top of the daily tasks.
 ## Learnings
 
 - Using **CodeIgniter** for this project (no previous experience with the framework)
-- Make a dockerized development environment with **Apache** and **MariaDB**, using **Alpine** more
+- Make a dockerized development environment with **Apache** and **MySQL**
 - Use various features
 - Set up a CI/CD pipeline in a system I'm not familiar with yet (using **Gitlab** CI pipeline with a **Github** repository)
 
