@@ -39,6 +39,7 @@ class UserModel extends Model
         if(isset($password)) {
             $data['data']['password'] = password_hash($password, PASSWORD_DEFAULT);
         }
+
         return $data;
     }
 }
