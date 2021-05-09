@@ -4,7 +4,7 @@ namespace App\Database\Migrations;
 
 use CodeIgniter\Database\Migration;
 
-class AddTodos extends Migration
+class AddDailyTasks extends Migration
 {
 	public function up()
 	{
@@ -15,22 +15,12 @@ class AddTodos extends Migration
 				'unsigned' => true,
 				'auto_increment' => true,
 			],
-			'description' => [
-				'type' => 'VARCHAR',
-				'constraint' => 255,
-				'null' => false,
-			],
 			'status' => [
 				'type' => 'ENUM',
-				'constraint' => ['active', 'inactive'],
-				'default' => 'active',
+				'constraint' => ['not_started', 'complete', 'cancelled'],
+				'default' => 'not_started',
 			],
-			'interval' => [
-				'type' => 'ENUM',
-				'constraint' => ['daily', 'weekly', 'monthly'],
-				'default' => 'daily',
-			],
-			'users_id' => [
+			'todos_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
 				'unsigned' => true,
@@ -38,13 +28,13 @@ class AddTodos extends Migration
 			'created_at DATETIME default CURRENT_TIMESTAMP',
 			'updated_at DATETIME default null ON UPDATE CURRENT_TIMESTAMP',
 		]);
-		$this->forge->addForeignKey('users_id', 'users', 'id');
+		$this->forge->addForeignKey('todos_id', 'todos', 'id');
 		$this->forge->addPrimaryKey('id');
-		$this->forge->createTable('todos');
+		$this->forge->createTable('daily_tasks');
 	}
 
 	public function down()
 	{
-		$this->forge->dropTable('todos');
+		$this->forge->dropTable('daily_tasks');
 	}
 }
