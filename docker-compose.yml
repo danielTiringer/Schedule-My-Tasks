@@ -52,7 +52,7 @@ services:
       - .env
     volumes:
       - ./src:/var/www/html
-    entrypoint: vendor/bin/phpunit
+    entrypoint: vendor/bin/phpunit --colors
     networks:
       - task-scheduler
 
