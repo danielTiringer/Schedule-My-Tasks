@@ -20,6 +20,11 @@ class AddTodos extends Migration
 				'constraint' => 255,
 				'null' => false,
 			],
+			'status' => [
+				'type' => 'ENUM',
+				'constraint' => ['not started', 'in progress', 'completed', 'deleted'],
+				'default' => 'not started',
+			],
 			'users_id' => [
 				'type' => 'INT',
 				'constraint' => 11,
@@ -27,6 +32,14 @@ class AddTodos extends Migration
 			],
 			'created_at DATETIME default CURRENT_TIMESTAMP',
 			'updated_at DATETIME default null ON UPDATE CURRENT_TIMESTAMP',
+			'completed_at' => [
+				'type' => 'DATETIME',
+				'null' => true,
+			],
+			'deleted_at' => [
+				'type' => 'DATETIME',
+				'null' => true,
+			],
 		]);
 		$this->forge->addForeignKey('users_id', 'users', 'id');
 		$this->forge->addPrimaryKey('id');
