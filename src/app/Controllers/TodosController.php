@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Todos;
 
 class TodosController extends BaseController
 {
@@ -11,6 +12,9 @@ class TodosController extends BaseController
 	public function index()
 	{
 		$data = [];
+
+		$model = new Todos();
+		$data['interval_options'] = $model->getAvailableIntervals();
 
 		echo view('templates/header', $data);
 		echo view('todos/index');
