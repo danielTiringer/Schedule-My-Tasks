@@ -25,13 +25,16 @@
                     <? if (session()->get('isLoggedIn')): ?>
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item <?= (!$uri->getSegment(1) ? 'active' : null) ?>">
-                                <a class="nav-link" href="/">Home</a>
+                                <a class="nav-link" href="/">Daily Tasks</a>
                             </li>
-                            <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
-                                <a class="nav-link" href="/profile">Profile</a>
+                            <li class="nav-item <?= ($uri->getSegment(1) == 'todos' ? 'active' : null) ?>">
+                                <a class="nav-link" href="/todos">Todos</a>
                             </li>
                         </ul>
                         <ul class="navbar-nav my-2 my-lg-0">
+                            <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
+                                <a class="nav-link" href="/profile">Profile</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout">Logout</a>
                             </li>
