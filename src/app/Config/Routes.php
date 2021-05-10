@@ -43,7 +43,7 @@ $routes->match(['GET', 'POST'], '/register', 'UsersController::register', ['filt
 $routes->match(['GET', 'POST'], '/profile', 'UsersController::profile', ['filter' => 'auth']);
 
 // TodosController
-$routes->get('/todos', 'TodosController::index', ['filter' => 'auth']);
+$routes->match(['GET', 'POST'], '/todos', 'TodosController::index', ['filter' => 'auth']);
 
 // DailyTasksController
 $routes->get('/', 'DailyTasksController::index', ['filter' => 'auth']);
