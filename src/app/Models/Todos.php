@@ -40,7 +40,7 @@ class Todos extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
-	public function getAvailableIntervals()
+	public function getAvailableIntervals(): array
 	{
 		$query = 'SHOW COLUMNS FROM todos LIKE "interval"';
 		$result = $this->db->query($query)->getRow(0)->Type;
