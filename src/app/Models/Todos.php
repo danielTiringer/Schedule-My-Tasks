@@ -6,6 +6,8 @@ use CodeIgniter\Model;
 
 class Todos extends Model
 {
+	private const REGEX_FOR_INTERVAL = "/'(.*?)'/";
+
 	protected $DBGroup              = 'default';
 	protected $table                = 'todos';
 	protected $primaryKey           = 'id';
@@ -49,10 +51,9 @@ class Todos extends Model
 	{
 		$query = 'SHOW COLUMNS FROM todos LIKE "interval"';
 		$result = $this->db->query($query)->getRow(0)->Type;
-		$regex = "/'(.*?)'/";
-		preg_match_all($regex , $result, $enumArray);
+		preg_match_all(self::REGEX_FOR_INTERVAL, $result, $enumArray);
 		$enumFields = $enumArray[1];
-		return $enumFields ;
+		return $enumFields;
 	}
 
 	public function getAllTodosOfUser(int $userId): array
