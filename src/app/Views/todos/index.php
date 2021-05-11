@@ -32,7 +32,8 @@
                     <? if (isset($validation)): ?>
                         <div class="col-12">
                             <div class="alert alert-danger" role="alert">
-                            <?= $validation->listErrors() ?>
+                                <?= $validation->listErrors() ?>
+                            </div>
                         </div>
                     <? endif; ?>
                 </div>

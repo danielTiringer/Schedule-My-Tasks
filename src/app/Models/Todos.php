@@ -14,7 +14,12 @@ class Todos extends Model
 	protected $returnType           = 'array';
 	protected $useSoftDelete        = false;
 	protected $protectFields        = true;
-	protected $allowedFields        = [];
+	protected $allowedFields        = [
+		'description',
+		'status',
+		'interval',
+		'users_id',
+	];
 
 	// Dates
 	protected $useTimestamps        = false;
