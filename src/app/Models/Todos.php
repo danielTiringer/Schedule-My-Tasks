@@ -54,4 +54,9 @@ class Todos extends Model
 		$enumFields = $enumArray[1];
 		return $enumFields ;
 	}
+
+	public function getAllTodosOfUser(int $userId): array
+	{
+		return $this->where('users_id', $userId)->findAll();
+	}
 }

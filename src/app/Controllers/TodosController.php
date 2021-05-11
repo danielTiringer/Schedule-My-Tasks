@@ -39,6 +39,7 @@ class TodosController extends BaseController
 			$data['validation'] = $this->validator;
 		}
 
+		$data['todos'] = $model->getAllTodosOfUser(session()->get('id'));
 		$data['interval_options'] = $model->getAvailableIntervals();
 
 		echo view('templates/header', $data);

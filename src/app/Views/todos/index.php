@@ -2,7 +2,6 @@
     <div class="col-12 col-lg-12 col-xs-8 mt-5 pt-3 pb-3 bg-white form-wrapper">
         <div class="container">
             <h3>Add New Todo</h3>
-            <hr>
             <? if (session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
                     <?= session()->get('success') ?>
@@ -38,6 +37,12 @@
                     <? endif; ?>
                 </div>
             </form>
+            <hr>
+            <? foreach($todos as $todo): ?>
+                <div class="col-12">
+                    <?= $todo['description'] ?>
+                </div>
+            <? endforeach; ?>
         </div>
     </div>
 </div>
