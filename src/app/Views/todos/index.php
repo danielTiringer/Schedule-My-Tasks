@@ -37,12 +37,33 @@
                     <? endif; ?>
                 </div>
             </form>
-            <hr>
-            <? foreach($todos as $todo): ?>
-                <div class="col-12">
-                    <?= $todo['description'] ?>
-                </div>
-            <? endforeach; ?>
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <? foreach($todos as $todo): ?>
+                        <tr>
+                            <td><?= $todo['description'] ?></td>
+                            <td>
+                                <div class="custom-control custom-switch">
+                                    <input type="checkbox" class="custom-control-input" id="activeStatus" <? if ($todo['status'] == 'active'): ?>checked<? endif; ?>>
+                                    <label class="custom-control-label" for="activeStatus">Active</label>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-sm px-3">
+                                <i class="fa fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    <? endforeach; ?>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
