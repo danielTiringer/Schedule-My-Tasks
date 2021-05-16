@@ -57,7 +57,7 @@
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger btn-sm px-3">
-                                <i class="fa fa-times"></i>
+                                    <i class="fa fa-times"></i>
                                 </button>
                             </td>
                         </tr>
