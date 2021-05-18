@@ -48,7 +48,7 @@ $routes->group('todos', ['filter' => 'auth'], function($routes)
 	$routes->get('/', 'TodosController::index');
 	$routes->post('/', 'TodosController::store');
 	$routes->get('(:num)/edit', 'TodosController::edit/$1');
-	$routes->put('(:num)', 'TodosController::update/$1');
+	$routes->put('(:num)', 'TodosController::edit/$1');
 	$routes->delete('(:num)', 'TodosController::destroy/$1');
 });
 

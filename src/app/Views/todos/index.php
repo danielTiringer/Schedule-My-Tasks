@@ -59,15 +59,19 @@
                             </td>
                             <td>
                                 <div class="row">
-                                    <a href="/todos/<?= $todo['id'] ?>/edit" type="button" class="btn btn-dark btn-sm px-3">
-                                        <i class="fa fa-pencil"></i>
-                                    </a>
-                                    <form action="/todos/<?= $todo['id'] ?>" method="POST">
-                                        <input type="hidden" name="_method" value="DELETE" />
-                                        <button type="submit" class="btn btn-danger btn-sm px-3">
-                                            <i class="fa fa-times"></i>
-                                        </button>
-                                    </form>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <a href="/todos/<?= $todo['id'] ?>/edit" type="button" class="btn btn-dark btn-sm px-3">
+                                            <i class="fa fa-pencil"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-4 col-sm-6">
+                                        <form action="/todos/<?= $todo['id'] ?>" method="POST">
+                                            <input type="hidden" name="_method" value="DELETE" />
+                                            <button type="submit" class="btn btn-danger btn-sm px-3">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
                             </td>
                         </tr>

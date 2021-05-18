@@ -53,19 +53,40 @@ class TodosController extends BaseController
 		$data = [];
 
 		$model = model('Todos', false);
-		$data['interval_options'] = $model->getAvailableIntervals();
 
 		$todo = $model->find($id);
+
+		if ($this->request->getMethod() === 'put') {
+			$rules = [
+				'description' => 'required|min_length[6]|max_length[100]',
+				'interval' => 'required',
+				'status' => 'required',
+			];
+
+			if ($this->validate($rules)) {
+				$sanitizedData = [
+					'id' => $id,
+					'description' => $this->request->getVar('description'),
+					'interval' => $this->request->getVar('interval'),
+					'status' => $this->request->getVar('status'),
+				];
+
+				$model->save($sanitizedData);
+
+				session()->setFlashData('success', 'Successfully updated');
+
+				return redirect()->to('/todos');
+			}
+
+			$data['validation'] = $this->validator;
+		}
+
 		$data['todo'] = $todo;
+		$data['interval_options'] = $model->getAvailableIntervals();
 
 		echo view('templates/header', $data);
 		echo view('todos/edit');
 		echo view('templates/footer');
-	}
-
-	public function update(int $id = null)
-	{
-
 	}
 
 	public function destroy(int $id = null)
