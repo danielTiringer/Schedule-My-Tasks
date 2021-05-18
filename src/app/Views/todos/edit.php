@@ -38,7 +38,7 @@
                         </div>
                     <? endif; ?>
                 </div>
-                <div class="row">
+                <div class="col-12 row">
                     <div class="col-6 col-sm-4">
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>

@@ -60,7 +60,7 @@
                             <td>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 col-sm-6">
-                                        <a href="/todos/<?= $todo['id'] ?>/edit" type="button" class="btn btn-dark btn-sm px-3">
+                                        <a href="/todos/<?= $todo['id'] ?>" type="button" class="btn btn-dark btn-sm px-3">
                                             <i class="fa fa-pencil"></i>
                                         </a>
                                     </div>

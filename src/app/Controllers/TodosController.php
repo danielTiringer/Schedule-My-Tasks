@@ -15,7 +15,29 @@ class TodosController extends BaseController
 
 		$model = model('Todos', false);
 
-		$data['validation'] = $this->validator;
+		if ($this->request->getMethod() === 'post') {
+			$rules = [
+				'description' => 'required|min_length[6]|max_length[100]',
+				'interval' => 'required',
+			];
+
+			if ($this->validate($rules)) {
+				$sanitizedData = [
+					'description' => $this->request->getVar('description'),
+					'interval' => $this->request->getVar('interval'),
+					'users_id' => session()->get('id'),
+				];
+
+				$model->save($sanitizedData);
+
+				session()->setFlashData('success', 'Todo successfully added');
+
+				return redirect()->to('/todos');
+			}
+
+			$data['validation'] = $this->validator;
+		}
+
 		$data['todos'] = $model->getAllTodosOfUser(session()->get('id'));
 		$data['interval_options'] = $model->getAvailableIntervals();
 
