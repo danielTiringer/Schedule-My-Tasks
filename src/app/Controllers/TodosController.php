@@ -43,9 +43,29 @@ class TodosController extends BaseController
 			$model->save($sanitizedData);
 
 			session()->setFlashData('success', 'Todo successfully added');
-
-			return redirect()->to('/todos');
 		}
+
+		return redirect()->to('/todos');
+	}
+
+	public function edit(int $id = null)
+	{
+		$data = [];
+
+		$model = model('Todos', false);
+		$data['interval_options'] = $model->getAvailableIntervals();
+
+		$todo = $model->find($id);
+		$data['todo'] = $todo;
+
+		echo view('templates/header', $data);
+		echo view('todos/edit');
+		echo view('templates/footer');
+	}
+
+	public function update(int $id = null)
+	{
+
 	}
 
 	public function destroy(int $id = null)

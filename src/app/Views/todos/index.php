@@ -40,10 +40,10 @@
             <table class="table align-middle">
                 <thead>
                     <tr>
-                    <th scope="col">Description</th>
-                    <th scope="col">Interval</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Actions</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Interval</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,12 +58,17 @@
                                 </div>
                             </td>
                             <td>
-                                <form action="/todos/<?= $todo['id'] ?>" method="POST">
-                                    <input type="hidden" name="_method" value="DELETE" />
-                                    <button type="submit" class="btn btn-danger btn-sm px-3">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
+                                <div class="row">
+                                    <a href="/todos/<?= $todo['id'] ?>/edit" type="button" class="btn btn-dark btn-sm px-3">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+                                    <form action="/todos/<?= $todo['id'] ?>" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE" />
+                                        <button type="submit" class="btn btn-danger btn-sm px-3">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     <? endforeach; ?>
