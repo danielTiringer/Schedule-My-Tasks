@@ -58,9 +58,12 @@
                                 </div>
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-sm px-3">
-                                    <i class="fa fa-times"></i>
-                                </button>
+                                <form action="/todos/<?= $todo['id'] ?>" method="POST">
+                                    <input type="hidden" name="_method" value="DELETE" />
+                                    <button type="submit" class="btn btn-danger btn-sm px-3">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </form>
                             </td>
                         </tr>
                     <? endforeach; ?>

@@ -45,6 +45,7 @@ $routes->match(['GET', 'POST'], '/profile', 'UsersController::profile', ['filter
 // TodosController
 $routes->get('/todos', 'TodosController::index', ['filter' => 'auth']);
 $routes->post('/todos', 'TodosController::store', ['filter' => 'auth']);
+$routes->delete('/todos/(:num)', 'TodosController::delete/$1', ['filter' => 'auth']);
 
 // DailyTasksController
 $routes->get('/', 'DailyTasksController::index', ['filter' => 'auth']);

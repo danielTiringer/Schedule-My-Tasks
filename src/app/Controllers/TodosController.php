@@ -47,4 +47,14 @@ class TodosController extends BaseController
 			return redirect()->to('/todos');
 		}
 	}
+
+	public function delete($id = null)
+	{
+		$model = model('Todos', false);
+
+		if ($todo = $model->where('id', $id)->delete()) {
+			session()->setFlashData('success', 'Todo successfully deleted');
+		}
+		return redirect()->to('/todos');
+	}
 }
