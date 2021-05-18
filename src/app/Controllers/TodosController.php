@@ -48,13 +48,14 @@ class TodosController extends BaseController
 		}
 	}
 
-	public function delete($id = null)
+	public function destroy(int $id = null)
 	{
 		$model = model('Todos', false);
 
 		if ($todo = $model->where('id', $id)->delete()) {
 			session()->setFlashData('success', 'Todo successfully deleted');
 		}
+
 		return redirect()->to('/todos');
 	}
 }
