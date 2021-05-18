@@ -41,6 +41,7 @@
                 <thead>
                     <tr>
                     <th scope="col">Description</th>
+                    <th scope="col">Interval</th>
                     <th scope="col">Status</th>
                     <th scope="col">Actions</th>
                     </tr>
@@ -49,6 +50,7 @@
                     <? foreach($todos as $todo): ?>
                         <tr>
                             <td><?= $todo['description'] ?></td>
+                            <td><?= $todo['interval'] ?></td>
                             <td>
                                 <div class="custom-control custom-switch">
                                     <input type="checkbox" class="custom-control-input" id="activeStatus" <? if ($todo['status'] == 'active'): ?>checked<? endif; ?>>
