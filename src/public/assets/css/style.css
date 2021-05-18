@@ -2,6 +2,10 @@ body {
     background-color: #e1e1e1;
 }
 
+tr:nth-child(even) {
+    background-color: #f4f4f4;
+}
+
 .form-wrapper {
     border-radius: 7px;
 }
