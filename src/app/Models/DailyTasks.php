@@ -56,7 +56,9 @@ class DailyTasks extends Model
 				 ->join('todos', 'todos.id = daily_tasks.todos_id')
 					->where('DATE(daily_tasks.created_at)', $today);
 		$query = $builder->get();
-		return $query->getResultArray();
+		$result = $query->getResultArray();
+
+		return $this->formatStatusText($result);
 	}
 
 	public function setStatus(int $id, string $status)
@@ -91,6 +93,17 @@ class DailyTasks extends Model
 		}
 	}
 
+	private function formatStatusText(array $results): array
+	{
+		return array_map([$this, 'replaceUnderscoreAndCapitalize'], $results);
+	}
+
+	private function replaceUnderscoreAndCapitalize(array $result): array
+	{
+		$result['status'] = ucwords(str_replace('_', ' ', $result['status']));
+		return $result;
+	}
+
 	private function isItMonday(): bool
 	{
 		$currentTime = $this->getCurrentTime();
@@ -110,6 +123,5 @@ class DailyTasks extends Model
 		$timeZone = new DateTimeZone('Europe/Budapest');
 
 		return new DateTime('now', $timeZone);
-
 	}
 }
