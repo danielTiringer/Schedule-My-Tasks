@@ -28,7 +28,11 @@
                     <div class="col-2 col-sm-6">
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <input type="text" class="form-control" name="status" id="status" value="<?= set_value('status', $todo['status']) ?>">
+                            <select class="form-control" name="status" id="status">
+                                <? foreach ($status_options as $option): ?>
+                                    <option <? if($todo['interval'] == $option): ?> selected="selected"<? endif ?>><?= $option ?></option>
+                                <? endforeach ?>
+                            </select>
                         </div>
                     </div>
                     <? if (isset($validation)): ?>

@@ -105,6 +105,10 @@ class TodosController extends BaseController
 
 		$data['todo'] = $todo;
 		$data['interval_options'] = $model->getAvailableIntervals();
+		$data['status_options'] = [
+			'active',
+			'inactive',
+		];
 
 		echo view('templates/header', $data);
 		echo view('todos/edit');

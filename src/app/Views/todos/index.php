@@ -51,12 +51,7 @@
                         <tr>
                             <td><?= $todo['description'] ?></td>
                             <td><?= $todo['interval'] ?></td>
-                            <td>
-                                <div class="custom-control custom-switch">
-                                    <input type="checkbox" class="custom-control-input" id="activeStatus" <? if ($todo['status'] == 'active'): ?>checked<? endif; ?>>
-                                    <label class="custom-control-label" for="activeStatus">Active</label>
-                                </div>
-                            </td>
+                            <td><?= $todo['status'] ?></td>
                             <td>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 col-sm-6">
