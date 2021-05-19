@@ -52,6 +52,12 @@ $routes->group('todos', ['filter' => 'auth'], function($routes)
 
 // DailyTasksController
 $routes->get('/', 'DailyTasksController::index', ['filter' => 'auth']);
+$routes->group('tasks', ['filter' => 'auth'], function($routes)
+{
+	$routes->put('(:num)/progress', 'DailyTasksController::progress');
+	$routes->put('(:num)/complete', 'DailyTasksController::complete');
+	$routes->delete('(:num)', 'DailyTasksController::delete');
+});
 $routes->cli('/dailytasks/generate', 'DailyTasksController::generate');
 
 /*
