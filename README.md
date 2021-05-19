@@ -38,9 +38,19 @@ database.default.password = password
 database.default.DBDriver = MySQL
 ```
 
-## Start the containers
+### Start the containers
 
 From the respository's root run `docker-compose up -d --build`. Open up your browser of choice to [http://localhost:4200](http://localhost:4200) and you should see the app running as intended.
+
+Containers created and their ports (if used) are as follows:
+
+- **php** - `:4200`
+- **phpunit**
+- **spark**
+- **mariadb** - `:3306`
+- **phpmyadmin** - `:4300`
+
+### Run command line commands
 
 Use the following command templates from your project root, modifiying them to fit your particular use case:
 
@@ -50,13 +60,11 @@ docker-compose run --rm spark migrate:status
 docker-compose run --rm phpunit tests/
 ```
 
-Containers created and their ports (if used) are as follows:
+You can also run cli-based commands (courtesy of CodeIgniter) for crons and other purposes either from within the container (then omit the docker part), or from outside:
 
-- **php** - `:4200`
-- **phpunit**
-- **spark**
-- **mariadb** - `:3306`
-- **phpmyadmin** - `:4300`
+``` sh
+docker-compose run --rm php php public/index.php <INSERT ROUTE WORD BY WORD>
+```
 
 ### Troubleshooting
 

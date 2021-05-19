@@ -16,4 +16,12 @@ class DailyTasksController extends BaseController
 		echo view('dailytasks/index');
 		echo view('templates/footer');
 	}
+
+	public function generate()
+	{
+		$model = model('DailyTasks', false);
+
+		echo "You're now running a command from the console!\n";
+
+	}
 }

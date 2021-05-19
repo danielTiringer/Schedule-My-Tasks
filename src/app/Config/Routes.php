@@ -52,6 +52,7 @@ $routes->group('todos', ['filter' => 'auth'], function($routes)
 
 // DailyTasksController
 $routes->get('/', 'DailyTasksController::index', ['filter' => 'auth']);
+$routes->cli('/dailytasks/generate', 'DailyTasksController::generate');
 
 /*
  * --------------------------------------------------------------------
