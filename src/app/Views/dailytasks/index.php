@@ -26,7 +26,7 @@
                                         <form action="/tasks/<?= $task['id'] ?>/progress" method="POST">
                                             <input type="hidden" name="_method" value="PUT" />
                                             <button type="submit" class="btn btn-dark btn-sm px-3">
-                                                <i class="fa fa-wrench"></i>
+                                                <i class="fa fa-pause"></i>
                                             </button>
                                         </form>
                                     </div>

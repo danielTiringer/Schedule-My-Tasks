@@ -21,6 +21,27 @@ class DailyTasksController extends BaseController
 		echo view('templates/footer');
 	}
 
+	public function progress(int $id = null)
+	{
+		$model = model('DailyTasks', false);
+		$model->setStatus($id, 'not_started');
+		return redirect()->to('/');
+	}
+
+	public function complete(int $id = null)
+	{
+		$model = model('DailyTasks', false);
+		$model->setStatus($id, 'complete');
+		return redirect()->to('/');
+	}
+
+	public function delete(int $id = null)
+	{
+		$model = model('DailyTasks', false);
+		$model->setStatus($id, 'cancelled');
+		return redirect()->to('/');
+	}
+
 	public function generate()
 	{
 		$model = model('DailyTasks', false);

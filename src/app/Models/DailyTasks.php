@@ -59,6 +59,13 @@ class DailyTasks extends Model
 		return $query->getResultArray();
 	}
 
+	public function setStatus(int $id, string $status)
+	{
+		$this->update($id, [
+			'status' => $status,
+		]);
+	}
+
 	public function generateDailyTasks()
 	{
 		$db = Database::connect();
