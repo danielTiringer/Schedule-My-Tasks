@@ -12,6 +12,10 @@ class DailyTasksController extends BaseController
 	{
 		$data = [];
 
+		$model = model('DailyTasks', false);
+
+		$data['tasks'] = $model->getTodaysTasks();
+
 		echo view('templates/header', $data);
 		echo view('dailytasks/index');
 		echo view('templates/footer');

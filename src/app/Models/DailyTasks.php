@@ -46,10 +46,23 @@ class DailyTasks extends Model
 	protected $beforeDelete         = [];
 	protected $afterDelete          = [];
 
+	public function getTodaysTasks(): array
+	{
+		$today = $this->getCurrentTime()->format('Y-m-d');
+
+		$db = Database::connect();
+		$builder = $db->table('daily_tasks')
+					->select('daily_tasks.id, daily_tasks.status, todos.description')
+				 ->join('todos', 'todos.id = daily_tasks.todos_id')
+					->where('DATE(daily_tasks.created_at)', $today);
+		$query = $builder->get();
+		return $query->getResultArray();
+	}
+
 	public function generateDailyTasks()
 	{
 		$db = Database::connect();
-		$builder = $db->table('todos')
+		$builder = $db->table('daily_tasks')
 					->select('id')
 					->where('status', 'active');
 
@@ -81,12 +94,14 @@ class DailyTasks extends Model
 	private function isItFirstOfTheMonth(): bool
 	{
 		$currentTime = $this->getCurrentTime();
+
 		return $currentTime->format('d') === '1';
 	}
 
 	private function getCurrentTime(): DateTime
 	{
 		$timeZone = new DateTimeZone('Europe/Budapest');
+
 		return new DateTime('now', $timeZone);
 
 	}
