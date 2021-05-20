@@ -71,7 +71,7 @@ class DailyTasks extends Model
 	public function generateDailyTasks()
 	{
 		$db = Database::connect();
-		$builder = $db->table('daily_tasks')
+		$builder = $db->table('todos')
 					->select('id')
 					->where('status', 'active');
 
