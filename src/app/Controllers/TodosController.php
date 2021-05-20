@@ -39,30 +39,6 @@ class TodosController extends BaseController
 		echo view('templates/footer');
 	}
 
-	public function store()
-	{
-		$model = model('Todos', false);
-
-		$rules = [
-			'description' => 'required|min_length[6]|max_length[100]',
-			'interval' => 'required',
-		];
-
-		if ($this->validate($rules)) {
-			$sanitizedData = [
-				'description' => $this->request->getVar('description'),
-				'interval' => $this->request->getVar('interval'),
-				'users_id' => session()->get('id'),
-			];
-
-			$model->save($sanitizedData);
-
-			session()->setFlashData('success', 'Todo successfully added');
-		}
-
-		return redirect()->to('/todos');
-	}
-
 	public function edit(int $id = null)
 	{
 		$data = [];
