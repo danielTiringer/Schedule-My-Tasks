@@ -16,26 +16,19 @@ class TodosController extends BaseController
 		$model = model('Todos', false);
 
 		if ($this->request->getMethod() === 'post') {
-			$rules = [
-				'description' => 'required|min_length[6]|max_length[100]',
-				'interval' => 'required',
+			$newTodo = [
+				'description' => $this->request->getVar('description'),
+				'interval' => $this->request->getVar('interval'),
+				'users_id' => session()->get('id'),
 			];
 
-			if ($this->validate($rules)) {
-				$sanitizedData = [
-					'description' => $this->request->getVar('description'),
-					'interval' => $this->request->getVar('interval'),
-					'users_id' => session()->get('id'),
-				];
-
-				$model->save($sanitizedData);
-
+			if ($model->save($newTodo)) {
 				session()->setFlashData('success', 'Todo successfully added');
 
 				return redirect()->to('/todos');
 			}
 
-			$data['validation'] = $this->validator;
+			$data['errors'] = $model->errors();
 		}
 
 		$data['todos'] = $model->getAllTodosOfUser(session()->get('id'));
@@ -79,28 +72,20 @@ class TodosController extends BaseController
 		$todo = $model->find($id);
 
 		if ($this->request->getMethod() === 'put') {
-			$rules = [
-				'description' => 'required|min_length[6]|max_length[100]',
-				'interval' => 'required',
-				'status' => 'required',
+			$updatedTodo = [
+				'id' => $id,
+				'description' => $this->request->getVar('description'),
+				'interval' => $this->request->getVar('interval'),
+				'status' => $this->request->getVar('status'),
 			];
 
-			if ($this->validate($rules)) {
-				$sanitizedData = [
-					'id' => $id,
-					'description' => $this->request->getVar('description'),
-					'interval' => $this->request->getVar('interval'),
-					'status' => $this->request->getVar('status'),
-				];
-
-				$model->save($sanitizedData);
-
+			if ($model->save($updatedTodo)) {
 				session()->setFlashData('success', 'Successfully updated');
 
 				return redirect()->to('/todos');
 			}
 
-			$data['validation'] = $this->validator;
+			$data['errors'] = $model->errors();
 		}
 
 		$data['todo'] = $todo;

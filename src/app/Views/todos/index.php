@@ -28,10 +28,12 @@
                     <div class="col-2 mt-4">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </div>
-                    <?php if (isset($validation)): ?>
+                    <?php if (isset($errors)): ?>
                         <div class="col-12">
                             <div class="alert alert-danger" role="alert">
-                                <?= $validation->listErrors() ?>
+                                <?php foreach ($errors as $field => $error): ?>
+                                    <?= $error ?>
+                                <?php endforeach; ?>
                             </div>
                         </div>
                     <?php endif; ?>

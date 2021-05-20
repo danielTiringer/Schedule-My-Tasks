@@ -35,13 +35,16 @@
                             </select>
                         </div>
                     </div>
-                    <?php if (isset($validation)): ?>
-                        <div class="col-12">
-                            <div class="alert alert-danger" role="alert">
-                            <?= $validation->listErrors() ?>
-                        </div>
-                    <?php endif; ?>
                 </div>
+                <?php if (isset($errors)): ?>
+                    <div class="col-12">
+                        <div class="alert alert-danger" role="alert">
+                            <?php foreach ($errors as $field => $error): ?>
+                                <?= $error ?>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
                 <div class="col-12 row">
                     <div class="col-6 col-sm-4">
                         <button type="submit" class="btn btn-primary">Update</button>

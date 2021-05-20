@@ -31,7 +31,10 @@ class Todos extends Model
 	protected $deletedField         = 'deleted_at';
 
 	// Validation
-	protected $validationRules      = [];
+	protected $validationRules      = [
+		'description' => 'required|min_length[6]|max_length[100]',
+		'interval' => 'required',
+	];
 	protected $validationMessages   = [];
 	protected $skipValidation       = false;
 	protected $cleanValidationRules = true;
