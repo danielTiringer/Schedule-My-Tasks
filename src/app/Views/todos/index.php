@@ -2,11 +2,11 @@
     <div class="col-12 col-lg-12 col-xs-8 mt-5 pt-3 pb-3 bg-white form-wrapper">
         <div class="container">
             <h3>Add New Todo</h3>
-            <? if (session()->get('success')): ?>
+            <?php if (session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
                     <?= session()->get('success') ?>
                 </div>
-            <? endif; ?>
+            <?php endif; ?>
             <form class="" action="/todos" method="POST">
                 <div class="row">
                     <div class="col-12 col-md-8 col-sm-7">
@@ -19,22 +19,22 @@
                         <div class="form-group">
                             <label for="interval">Interval</label>
                             <select class="form-control" name="interval" id="interval">
-                                <? foreach ($interval_options as $option): ?>
+                                <?php foreach ($interval_options as $option): ?>
                                     <option><?= $option ?></option>
-                                <? endforeach ?>
+                                <?php endforeach ?>
                             </select>
                         </div>
                     </div>
                     <div class="col-2 mt-4">
                         <button type="submit" class="btn btn-primary">Add</button>
                     </div>
-                    <? if (isset($validation)): ?>
+                    <?php if (isset($validation)): ?>
                         <div class="col-12">
                             <div class="alert alert-danger" role="alert">
                                 <?= $validation->listErrors() ?>
                             </div>
                         </div>
-                    <? endif; ?>
+                    <?php endif; ?>
                 </div>
             </form>
             <table class="table align-middle">
@@ -47,7 +47,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <? foreach($todos as $todo): ?>
+                    <?php foreach($todos as $todo): ?>
                         <tr>
                             <td><?= $todo['description'] ?></td>
                             <td><?= $todo['interval'] ?></td>
@@ -70,7 +70,7 @@
                                 </div>
                             </td>
                         </tr>
-                    <? endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

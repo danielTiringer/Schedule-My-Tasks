@@ -20,7 +20,7 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <? if (session()->get('isLoggedIn')): ?>
+                    <?php if (session()->get('isLoggedIn')): ?>
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item <?= (!$uri->getSegment(1) ? 'active' : null) ?>">
                                 <a class="nav-link" href="/">Daily Tasks</a>
@@ -37,7 +37,7 @@
                                 <a class="nav-link" href="/logout">Logout</a>
                             </li>
                         </ul>
-                    <? else: ?>
+                    <?php else: ?>
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item <?= ($uri->getSegment(1) == 'login' ? 'active' : null) ?>">
                                 <a class="nav-link" href="/login">Login</a>
@@ -46,7 +46,7 @@
                                 <a class="nav-link" href="/register">Register</a>
                             </li>
                         </ul>
-                    <? endif; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </nav>

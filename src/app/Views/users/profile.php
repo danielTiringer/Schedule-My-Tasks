@@ -3,11 +3,11 @@
         <div class="container">
             <h3><?= $user['first_name'] . ' ' . $user['last_name'] ?></h3>
             <hr>
-            <? if (session()->get('success')): ?>
+            <?php if (session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
                     <?= session()->get('success') ?>
                 </div>
-            <? endif; ?>
+            <?php endif; ?>
             <form class="" action="/profile" method="POST">
                 <div class="row">
                     <div class="col-12 col-sm-6">
@@ -40,12 +40,12 @@
                             <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">
                         </div>
                     </div>
-                    <? if (isset($validation)): ?>
+                    <?php if (isset($validation)): ?>
                         <div class="col-12">
                             <div class="alert alert-danger" role="alert">
                             <?= $validation->listErrors() ?>
                         </div>
-                    <? endif; ?>
+                    <?php endif; ?>
                 </div>
                 <div class="row">
                     <div class="col-12 col-sm-4">

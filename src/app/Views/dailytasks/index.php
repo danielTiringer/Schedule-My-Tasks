@@ -2,11 +2,11 @@
     <div class="col-12 col-lg-12 col-xs-8 mt-5 pt-3 pb-3 bg-white form-wrapper">
         <div class="container">
             <h3>Tasks for today</h3>
-            <? if (session()->get('success')): ?>
+            <?php if (session()->get('success')): ?>
                 <div class="alert alert-success" role="alert">
                     <?= session()->get('success') ?>
                 </div>
-            <? endif; ?>
+            <?php endif; ?>
             <table class="table align-middle">
                 <thead>
                     <tr>
@@ -16,13 +16,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <? foreach($tasks as $task): ?>
+                    <?php foreach($tasks as $task): ?>
                         <tr>
                             <td class="col-6"><?= $task['description'] ?></td>
                             <td class="col-3"><?= $task['status'] ?></td>
                             <td class="col-3">
                                 <div class="row">
-                                    <? if ($task['status'] !== 'Not Started'): ?>
+                                    <?php if ($task['status'] !== 'Not Started'): ?>
                                         <div class="col-md-4 col-sm-12 py-1">
                                             <form action="/tasks/<?= $task['id'] ?>/progress" method="POST">
                                                 <input type="hidden" name="_method" value="PUT" />
@@ -31,8 +31,8 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    <? endif; ?>
-                                    <? if ($task['status'] !== 'Complete'): ?>
+                                    <?php endif; ?>
+                                    <?php if ($task['status'] !== 'Complete'): ?>
                                         <div class="col-md-4 col-sm-12 py-1">
                                             <form action="/tasks/<?= $task['id'] ?>/complete" method="POST">
                                                 <input type="hidden" name="_method" value="PUT" />
@@ -41,8 +41,8 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    <? endif; ?>
-                                    <? if ($task['status'] !== 'Cancelled'): ?>
+                                    <?php endif; ?>
+                                    <?php if ($task['status'] !== 'Cancelled'): ?>
                                         <div class="col-md-4 col-sm-12 py-1">
                                             <form action="/tasks/<?= $task['id'] ?>" method="POST">
                                                 <input type="hidden" name="_method" value="DELETE" />
@@ -51,11 +51,11 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    <? endif; ?>
+                                    <?php endif; ?>
                                 </div>
                             </td>
                         </tr>
-                    <? endforeach; ?>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
