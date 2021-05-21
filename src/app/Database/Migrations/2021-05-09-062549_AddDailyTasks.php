@@ -27,7 +27,6 @@ class AddDailyTasks extends Migration
 			],
 			'created_at DATETIME default CURRENT_TIMESTAMP',
 			'updated_at DATETIME default null ON UPDATE CURRENT_TIMESTAMP',
-			'deleted_at DATETIME default null',
 		]);
 		$this->forge->addForeignKey('todos_id', 'todos', 'id');
 		$this->forge->addPrimaryKey('id');
