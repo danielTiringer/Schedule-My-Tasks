@@ -30,7 +30,7 @@
                             <label for="status">Status</label>
                             <select class="form-control" name="status" id="status">
                                 <?php foreach ($status_options as $option): ?>
-                                    <option <?php if($todo['interval'] == $option): ?> selected="selected"<?php endif ?>><?= $option ?></option>
+                                    <option <?php if($todo['status'] == $option): ?> selected="selected"<?php endif ?>><?= $option ?></option>
                                 <?php endforeach ?>
                             </select>
                         </div>
