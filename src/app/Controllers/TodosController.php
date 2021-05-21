@@ -80,7 +80,7 @@ class TodosController extends BaseController
 	{
 		$model = model('Todos', false);
 
-		if ($todo = $model->where('id', $id)->delete()) {
+		if ($model->where('id', $id)->delete()) {
 			session()->setFlashData('success', 'Todo successfully deleted');
 		}
 
