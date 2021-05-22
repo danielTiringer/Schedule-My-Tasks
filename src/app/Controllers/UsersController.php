@@ -6,7 +6,7 @@ use App\Models\Users;
 
 class UsersController extends BaseController
 {
-	protected $helpers = ['form'];
+	protected $helpers = ['form', 'url'];
 
 	public function login()
 	{
