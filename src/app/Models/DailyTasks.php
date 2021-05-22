@@ -2,14 +2,14 @@
 
 namespace App\Models;
 
+use CodeIgniter\I18n\Time;
 use CodeIgniter\Model;
 use Config\Database;
-use DateTime;
-use DateTimeZone;
 
 class DailyTasks extends Model
 {
 	private const TIMEZONE = 'Europe/Budapest';
+	private const LOCALE = 'hu_HU';
 
 	protected $DBGroup              = 'default';
 	protected $table                = 'daily_tasks';
@@ -50,9 +50,9 @@ class DailyTasks extends Model
 
 	public function getTodaysTasks(): array
 	{
-		$today = $this->getCurrentTime()->format('Y-m-d');
-		$weekStart = $this->getWeekStart()->format('Y-m-d');
-		$monthStart = $this->getMonthStart()->format('Y-m-d');
+		$today = $this->getCurrentTime()->toDateString();
+		$weekStart = $this->getWeekStart()->toDateString();
+		$monthStart = $this->getMonthStart()->toDateString();
 
 		$db = Database::connect();
 		$builder = $db->table('daily_tasks')
@@ -131,7 +131,7 @@ class DailyTasks extends Model
 	{
 		$currentTime = $this->getCurrentTime();
 
-		return $currentTime->format('l') === 'Monday';
+		return $currentTime->getDayOfWeek() === '1';
 	}
 
 	private function isItFirstOfTheMonth(): bool
@@ -141,20 +141,18 @@ class DailyTasks extends Model
 		return $currentTime->format('d') === '1';
 	}
 
-	private function getCurrentTime(): DateTime
+	private function getCurrentTime(): Time
 	{
-		$timeZone = new DateTimeZone(self::TIMEZONE);
-
-		return new DateTime('now', $timeZone);
+		return new Time('now', self::TIMEZONE, self::LOCALE);
 	}
 
-	private function getWeekStart(): DateTime
+	private function getWeekStart(): Time
 	{
-		return new DateTime('monday this week');
+		return new Time('monday this week', self::TIMEZONE, self::LOCALE);
 	}
 
-	private function getMonthStart(): DateTime
+	private function getMonthStart(): Time
 	{
-		return new DateTime('first day of this month');
+		return new Time('first day of this month', self::TIMEZONE, self::LOCALE);
 	}
 }
