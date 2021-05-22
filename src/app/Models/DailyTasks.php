@@ -57,8 +57,26 @@ class DailyTasks extends Model
 		$db = Database::connect();
 		$builder = $db->table('daily_tasks')
 					->select('daily_tasks.id, daily_tasks.status, todos.description')
-				 ->join('todos', 'todos.id = daily_tasks.todos_id')
-					->where('DATE(daily_tasks.created_at)', $today);
+					->join('todos', 'todos.id = daily_tasks.todos_id')
+					->groupStart()
+						->where([
+							'todos.interval' => 'daily',
+							'DATE(daily_tasks.created_at)' => $today,
+						])
+					->groupEnd()
+					->orGroupStart()
+						->where([
+							'todos.interval' => 'weekly',
+							'DATE(daily_tasks.created_at) >=' => $weekStart,
+						])
+					->groupEnd()
+					->orGroupStart()
+						->where([
+							'todos.interval' => 'monthly',
+							'DATE(daily_tasks.created_at) >=' => $monthStart,
+						])
+					->groupEnd()
+				 ;
 		$query = $builder->get();
 		$result = $query->getResultArray();
 
