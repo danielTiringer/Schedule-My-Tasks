@@ -58,6 +58,7 @@ class DailyTasks extends Model
 		$builder = $db->table('daily_tasks')
 					->select('daily_tasks.id, daily_tasks.status, todos.description')
 					->join('todos', 'todos.id = daily_tasks.todos_id')
+					->where('todos.users_id', session()->get('id'))
 					->groupStart()
 						->where([
 							'todos.interval' => 'daily',
