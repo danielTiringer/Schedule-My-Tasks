@@ -34,10 +34,10 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 // UsersController
-$routes->match(['GET', 'POST'], '/login', 'UsersController::login', ['filter' => 'noauth']);
-$routes->get('/logout', 'UsersController::logout');
-$routes->match(['GET', 'POST'], '/register', 'UsersController::register', ['filter' => 'noauth']);
-$routes->match(['GET', 'POST'], '/profile', 'UsersController::profile', ['filter' => 'auth']);
+$routes->match(['GET', 'POST'], '/login', 'UsersController::login', [ 'filter' => 'noauth', 'as' => 'login']);
+$routes->get('/logout', 'UsersController::logout', ['as' => 'logout']);
+$routes->match(['GET', 'POST'], '/register', 'UsersController::register', ['filter' => 'noauth', 'as' => 'register']);
+$routes->match(['GET', 'POST'], '/profile', 'UsersController::profile', ['filter' => 'auth', 'as' => 'profile']);
 
 // TodosController
 $routes->group('todos', ['filter' => 'auth'], function($routes)

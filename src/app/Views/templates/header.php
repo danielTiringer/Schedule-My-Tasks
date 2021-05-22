@@ -31,19 +31,19 @@
                         </ul>
                         <ul class="navbar-nav my-2 my-lg-0">
                             <li class="nav-item <?= ($uri->getSegment(1) == 'profile' ? 'active' : null) ?>">
-                                <a class="nav-link" href="/profile">Profile</a>
+                                <a class="nav-link" href="<?= route_to('profile') ?>">Profile</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/logout">Logout</a>
+                                <a class="nav-link" href="<?= route_to('logout') ?>">Logout</a>
                             </li>
                         </ul>
                     <?php else: ?>
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item <?= ($uri->getSegment(1) == 'login' ? 'active' : null) ?>">
-                                <a class="nav-link" href="/login">Login</a>
+                                <a class="nav-link" href="<?= route_to('login') ?>">Login</a>
                             </li>
                             <li class="nav-item <?= ($uri->getSegment(1) == 'register' ? 'active' : null) ?>">
-                                <a class="nav-link" href="/register">Register</a>
+                                <a class="nav-link" href="<?= route_to('register') ?>">Register</a>
                             </li>
                         </ul>
                     <?php endif; ?>
