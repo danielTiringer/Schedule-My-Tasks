@@ -51,6 +51,8 @@ class DailyTasks extends Model
 	public function getTodaysTasks(): array
 	{
 		$today = $this->getCurrentTime()->format('Y-m-d');
+		$weekStart = $this->getWeekStart()->format('Y-m-d');
+		$monthStart = $this->getMonthStart()->format('Y-m-d');
 
 		$db = Database::connect();
 		$builder = $db->table('daily_tasks')
@@ -125,5 +127,15 @@ class DailyTasks extends Model
 		$timeZone = new DateTimeZone(self::TIMEZONE);
 
 		return new DateTime('now', $timeZone);
+	}
+
+	private function getWeekStart(): DateTime
+	{
+		return new DateTime('monday this week');
+	}
+
+	private function getMonthStart(): DateTime
+	{
+		return new DateTime('first day of this month');
 	}
 }
