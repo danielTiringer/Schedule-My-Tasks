@@ -9,6 +9,8 @@ use DateTimeZone;
 
 class DailyTasks extends Model
 {
+	private const TIMEZONE = 'Europe/Budapest';
+
 	protected $DBGroup              = 'default';
 	protected $table                = 'daily_tasks';
 	protected $primaryKey           = 'id';
@@ -120,7 +122,7 @@ class DailyTasks extends Model
 
 	private function getCurrentTime(): DateTime
 	{
-		$timeZone = new DateTimeZone('Europe/Budapest');
+		$timeZone = new DateTimeZone(self::TIMEZONE);
 
 		return new DateTime('now', $timeZone);
 	}
