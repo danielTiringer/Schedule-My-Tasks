@@ -4,10 +4,11 @@ services:
   php:
     build:
       context: ./docker/php
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
       args:
         PUID: ${UID}
         PHP_VERSION: ${PHP_VERSION}
+      target: dev
     container_name: task-scheduler-application
     env_file:
       - .env
@@ -22,45 +23,9 @@ services:
     networks:
       - task-scheduler
 
-  spark:
-    build:
-      context: ./docker/cli
-      dockerfile: Dockerfile
-      args:
-        PUID: ${UID}
-        PHP_CLI_VERSION: ${PHP_CLI_VERSION}
-    container_name: task-scheduler-spark
-    env_file:
-      - .env
-    environment:
-      - APACHE_RUN_USER=#${UID}
-      - APACHE_RUN_GROUP=#${UID}
-    volumes:
-      - ./src:/var/www/html
-    entrypoint: php spark
-    networks:
-      - task-scheduler
-
-  phpunit:
-    build:
-      context: ./docker/cli
-      dockerfile: Dockerfile
-      args:
-        PHP_CLI_VERSION: ${PHP_CLI_VERSION}
-    container_name: task-scheduler-phpunit
-    env_file:
-      - .env
-    volumes:
-      - ./src:/var/www/html
-    entrypoint: vendor/bin/phpunit --colors
-    networks:
-      - task-scheduler
-
   database:
     image: mysql:8
     container_name: task-scheduler-database
-    ports:
-      - '3306:3306'
     env_file:
       - .env
     environment:

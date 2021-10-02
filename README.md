@@ -28,14 +28,14 @@ docker-compose run --rm php composer create-project codeigniter4/appstarter .
 
 #### Connect to a database
 
-In order to connect to a database, first copy the `php/env` file to `php/.env`, then uncomment and change the following:
+In order to connect to a database, first copy the `src/env` file to `src/.env`, then uncomment and change the following:
 
 ``` env
 database.default.hostname = database
 database.default.database = database
 database.default.username = user
 database.default.password = password
-database.default.DBDriver = MySQL
+database.default.DBDriver = MySQLi
 ```
 
 ### Start the containers
@@ -45,8 +45,6 @@ From the respository's root run `docker-compose up -d --build`. Open up your bro
 Containers created and their ports (if used) are as follows:
 
 - **php** - `:4200`
-- **phpunit**
-- **spark**
 - **mariadb** - `:3306`
 - **phpmyadmin** - `:4300`
 
@@ -56,8 +54,8 @@ Use the following command templates from your project root, modifiying them to f
 
 ``` sh
 docker-compose run --rm php composer update
-docker-compose run --rm spark migrate:status
-docker-compose run --rm phpunit tests/
+docker-compose run --rm php php spark migrate:status
+docker-compose run --rm php vendor/bin/phpunit --colors tests/
 ```
 
 You can also run cli-based commands (courtesy of CodeIgniter) for crons and other purposes either from within the container (then omit the docker part), or from outside:
@@ -68,7 +66,8 @@ docker-compose run --rm php php public/index.php <INSERT ROUTE WORD BY WORD>
 
 ### Troubleshooting
 
-- Make sure the `DBDriver` specified in the database config is actually installed in both the **php** and the **spark** containers
+- Make sure the `DBDriver` specified in the database config is actually installed in the **php**  container
+- Make sure the `writable` folder is set to be writable (`chmod -R 777 src/writable`)
 
 ### Resources
 
